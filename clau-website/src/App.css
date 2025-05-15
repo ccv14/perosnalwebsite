@@ -1,4 +1,7 @@
-/* Add these to your existing App.css */
+html {
+  scroll-behavior: smooth;
+}
+
 .app-container {
   position: relative;
   min-height: 100vh;
