@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { projects } from "../data/projectsData";
 import { motion, useInView } from "framer-motion";
 import "./ProjectsSection.css";
+import { FaPlay, FaCode } from "react-icons/fa";
 
 export default function Projects() {
   const sectionRef = useRef(null);
@@ -140,16 +141,18 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fas fa-external-link-alt"></i> Live Demo
+                    <FaPlay /> Live Preview
                   </a>
-                  <a
-                    href={project.code}
-                    className="project-link code-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Code
-                  </a>
+                  {project.code && (
+                    <a
+                      href={project.code}
+                      className="project-link code-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaCode /> View Code
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

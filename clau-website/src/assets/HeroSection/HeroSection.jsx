@@ -1,6 +1,6 @@
 import React from "react"; // Add this at the top
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet"; // Commented out
 import "./HeroSection.css";
 
 const Hero = () => {
@@ -22,7 +22,7 @@ const Hero = () => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet> // Commented out
         <title>Cuciureanu Claudiu - Web Developer</title>
         <meta
           name="description"
@@ -62,7 +62,7 @@ const Hero = () => {
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap"
           rel="stylesheet"
         />
-      </Helmet>
+      </Helmet> */}
 
       <section className="hero-section" id="home">
         <div className="hero-container">

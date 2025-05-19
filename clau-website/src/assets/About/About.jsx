@@ -15,6 +15,7 @@ import {
   SiFirebase,
   SiGithub,
 } from "react-icons/si";
+import profileImage from "../Images/ImageWebsite.jpg";
 import "./About.css";
 
 const About = () => {
@@ -50,8 +51,10 @@ const About = () => {
             transition={{ delay: 0.3, type: "spring" }}
           >
             <div className="profile-card">
-              <div className="profile-image"></div>
-              <div className="profile-gradient"></div>
+              <div
+                className="profile-image"
+                style={{ backgroundImage: `url(${profileImage})` }}
+              ></div>
             </div>
           </motion.div>
 

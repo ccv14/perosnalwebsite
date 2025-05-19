@@ -1,0 +1,196 @@
+/* Assuming global variables like --purple-accent and --dark-bg are available */
+/* If not, define them here or import a global stylesheet */
+/* Define --secondary if not globally available, from ProjectsSection.css it is #ff6b35 */
+:root {
+  --secondary: #ff6b35; /* Orange */
+  --ease: cubic-bezier(0.23, 1, 0.32, 1); /* Added from ProjectsSection.css */
+}
+
+.contact-section {
+  padding: 4rem 2rem;
+  color: #f0f0f0;
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Adjust as needed */
+}
+
+/* New Title Style */
+.contact-section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  color: #f0f0f0;
+}
+
+.contact-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--secondary), transparent 80%);
+  animation: underline 3s var(--ease) infinite;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+}
+
+.contact-container {
+  max-width: 700px;
+  width: 100%;
+  background-color: rgba(20, 20, 20, 0.5); /* Slightly lighter than pure dark */
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--secondary, #ff6b35) inset; /* Changed to orange inset */
+  text-align: center;
+}
+
+.contact-section h2 {
+  /* Remove or comment out if .contact-section-title replaces all h2 styling for the main title */
+  /* font-size: 2.8rem; */
+  /* color: var(--purple-accent, #8a2be2); */ /* Old purple */
+  /* margin-bottom: 1rem; */
+  /* font-weight: 600; */
+}
+
+.contact-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: #c0c0c0;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  font-weight: 400;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--secondary, #ff6b35); /* Changed to orange focus */
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.5); /* Changed to orange focus glow */
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #777;
+}
+
+.submit-btn {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  background-color: var(--secondary, #ff6b35); /* Changed to orange button */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3); /* Orange shadow for button */
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #e05a2e; /* Darker orange for hover */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5); /* Orange hover shadow */
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-message {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.submit-message.success {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.submit-message.error {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+/* Copied from ProjectsSection.css */
+@keyframes underline {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 1rem;
+  }
+  .contact-container {
+    padding: 2rem;
+  }
+  .contact-section h2 {
+    font-size: 2.4rem;
+  }
+  .contact-intro {
+    font-size: 1rem;
+  }
+}

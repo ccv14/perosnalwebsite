@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Helmet } from "react-helmet-async";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
 import TrueFocus from "./TrueFocus/TrueFocus";
@@ -15,7 +14,6 @@ import {
 } from "react-icons/fa";
 
 const Navbar = () => {
-  const [hoveredButton, setHoveredButton] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
@@ -37,34 +35,43 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
-  const leftButtons = [
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  const navItems = [
     {
       id: 1,
       icon: <FaHome />,
       label: "Home",
       aria: "Navigate to Home section",
+      link: "#home",
     },
     {
       id: 2,
       icon: <FaUser />,
       label: "About",
       aria: "Navigate to About section",
+      link: "#about",
     },
     {
       id: 3,
       icon: <FaProjectDiagram />,
       label: "Projects",
       aria: "Navigate to Projects section",
+      link: "#projects",
     },
     {
       id: 4,
       icon: <FaComments />,
-      label: "Blog",
-      aria: "Navigate to Blog section",
+      label: "Contact",
+      aria: "Navigate to Contact section",
+      link: "#contact",
     },
-  ];
-
-  const rightButtons = [
     {
       id: 5,
       icon: <FaEnvelope />,
@@ -95,47 +102,35 @@ const Navbar = () => {
     },
   ];
 
+  const leftButtons = navItems.slice(0, 4);
+  const rightButtons = navItems.slice(4);
+
   return (
     <>
-      <Helmet>
-        <title>Your Page Title</title>
-        <meta
-          name="description"
-          content="Professional portfolio showcasing skills, projects, and contact information"
-        />
-        <meta property="og:title" content="Your Professional Portfolio" />
-        <meta
-          property="og:description"
-          content="Explore my work and get in touch"
-        />
-      </Helmet>
-
       <nav className="navbar">
         <div className="nav-section left-buttons">
           {leftButtons.map((btn) => (
             <a
               key={btn.id}
-              href={`#${btn.label.toLowerCase()}`}
+              href={btn.link}
               className="nav-button"
               aria-label={btn.aria}
-              onMouseEnter={() => setHoveredButton(btn.id)}
-              onMouseLeave={() => setHoveredButton(null)}
+              target={btn.link.startsWith("http") ? "_blank" : undefined}
+              rel={
+                btn.link.startsWith("http") ? "noopener noreferrer" : undefined
+              }
             >
               {btn.icon}
-              <span className="sr-only">{btn.label}</span>
             </a>
           ))}
         </div>
 
         <div className="logo-container">
           <TrueFocus
-            sentence="Claudiu Cuciureanu"
-            manualMode={false}
-            blurAmount={4}
-            borderColor="#6755F1"
-            animationDuration={2}
-            pauseBetweenAnimations={1}
-            textColor="#ffffff"
+            sentence="Web Developer"
+            manualMode={true}
+            borderColor="var(--neon-purple)"
+            glowColor="var(--neon-purple)"
           />
         </div>
 
@@ -145,45 +140,56 @@ const Navbar = () => {
               key={btn.id}
               href={btn.link}
               className="nav-button"
+              aria-label={btn.aria}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={btn.aria}
-              onMouseEnter={() => setHoveredButton(btn.id)}
-              onMouseLeave={() => setHoveredButton(null)}
             >
               {btn.icon}
-              <span className="sr-only">{btn.label}</span>
             </a>
           ))}
         </div>
 
         <div
           className="hamburger-menu"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleMenu}
           ref={hamburgerRef}
-          aria-expanded={menuOpen}
-          aria-label="Toggle navigation menu"
+          aria-label="Toggle menu"
         >
           <div className={`hamburger-icon ${menuOpen ? "open" : ""}`}>
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
           </div>
         </div>
       </nav>
 
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} ref={menuRef}>
+        <div className="mobile-menu-header">
+          <button
+            className="close-menu-button"
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >
+            <FaTimes />
+          </button>
+        </div>
         <div className="mobile-menu-content">
           <ul>
-            {[...leftButtons, ...rightButtons].map((btn, index) => (
-              <li key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+            {navItems.map((item) => (
+              <li key={item.id}>
                 <a
-                  href={btn.link || `#${btn.label.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
-                  aria-label={btn.aria}
+                  href={item.link}
+                  onClick={closeMenu}
+                  aria-label={item.aria}
+                  target={item.link.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    item.link.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
                 >
-                  {btn.icon}
-                  <span>{btn.label}</span>
+                  {item.icon}
+                  <span>{item.label}</span>
                 </a>
               </li>
             ))}

@@ -30,7 +30,7 @@ export const projects = [
       "Responsive Design",
       "Email.js",
     ],
-    demo: "https://",
+    demo: "https://www.youtube.com/watch?v=uh2tedGPAdc",
     code: "https://github.com/ccv14/OutSourcing",
   },
   {
@@ -48,7 +48,7 @@ export const projects = [
       "Geolocation",
       "Responsive Design",
     ],
-    demo: "https://weather-app-demo.com",
+    demo: "https://www.youtube.com/watch?v=ornD2K45uUA",
     code: "https://github.com/ccv14/Weather-App",
   },
 ];

@@ -3,10 +3,13 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/", // Changed from "./" to "/"
   build: {
-    outDir: "dist",
+    outDir: "public",
+    emptyOutDir: true,
     assetsDir: "assets",
     sourcemap: true,
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
         manualChunks: undefined,

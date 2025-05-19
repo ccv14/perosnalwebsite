@@ -1,38 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
 .focus-container {
   position: relative;
   display: flex;
+  gap: 1em;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5em; /* Maintain spacing between letters */
 }
 
+/* Words */
 .focus-word {
   position: relative;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
   cursor: pointer;
   transition: filter 0.3s ease, color 0.3s ease;
-  white-space: nowrap;
-  font-size: 2rem; /* Desktop size */
-  margin: 0 0.1em; /* Space between letters */
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
-/* Mobile adjustments */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .focus-word {
-    font-size: 1.5rem; /* Tablet size */
-    margin: 0 0.08em; /* Slightly reduced spacing */
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .focus-word {
-    font-size: 1.2rem; /* Phone size */
-    margin: 0 0.05em; /* Maintain visible spacing */
+    font-size: 1.4rem;
   }
 }
 
-/* Existing styles below remain unchanged */
+@media (max-width: 320px) {
+  .focus-word {
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .focus-container {
+    gap: 0.5em;
+  }
+}
+
 .focus-word.active {
   filter: blur(0);
 }
@@ -82,8 +95,4 @@
   right: -10px;
   border-left: none;
   border-top: none;
-}
-
-.focus-word {
-  color: var(--text-color, #ffffff);
 }

@@ -1,10 +1,9 @@
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 import { Suspense, lazy } from "react";
 import LightningBg from "./assets/Backgrounds/LightningBg.jsx";
 import Navbar from "./assets/navbar/Navbar.jsx";
 import "./App.css";
-
-// Lazy load components for better performance
+const Contact = lazy(() => import("./assets/Contact/ContactSection.jsx"));
 const HeroSection = lazy(() => import("./assets/HeroSection/HeroSection.jsx"));
 const About = lazy(() => import("./assets/About/About.jsx"));
 const Projects = lazy(() => import("./assets/Projects/ProjectsSection.jsx"));
@@ -19,29 +18,6 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <>
-      <Helmet>
-        <title>Claudiu Cuciureanu - Personal Website</title>
-        <meta
-          name="description"
-          content="Welcome to my personal website. I'm a passionate developer creating amazing things."
-        />
-        <meta
-          name="keywords"
-          content="developer, portfolio, web development, React, JavaScript"
-        />
-        <meta
-          property="og:title"
-          content="Claudiu Cuciureanu - Personal Website"
-        />
-        <meta
-          property="og:description"
-          content="Welcome to my personal website. I'm a passionate developer creating amazing things."
-        />
-        <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://mywebsite-36386.web.app" />
-      </Helmet>
-
       <div className="app-container">
         {/* Background Layer */}
         <div className="background-container">
@@ -61,6 +37,7 @@ function App() {
             <HeroSection />
             <About />
             <Projects />
+            <Contact />
           </Suspense>
         </div>
       </div>
